@@ -1,15 +1,20 @@
 import discum
 import os
+from keep_alive import keep_alive
 import time
 import discord
 from dotenv import load_dotenv
 
 config = load_dotenv(".env")
 
-token = os.environ['TOKEN']
+
+
+
 serverId = os.environ['SERVER_ID']
 channelId = os.environ['CHANNEL_ID']
 delay = os.environ['DELAY']
+keep_alive()
+token = os.environ['TOKEN']
 
 bot = discum.Client(token)
 
@@ -64,5 +69,5 @@ async def on_connect():
         except ValueError:
             print(f"couldnt message: {user.name}, {ValueError} ")
 
-
-client.run(token, bot=False)
+keep_alive()
+client.run(os.environ['TOKEN'], bot=False)
